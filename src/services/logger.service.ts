@@ -9,7 +9,7 @@ export class Logger {
     this.pinoInstance.info(msg, ...args);
   }
 
-  logError(error?: Error, msg?: string, ...args: any[]) {
-    this.pinoInstance.error(error, msg, ...args);
+  logError(err?: Error, msg?: string, ...args: any[]) {
+    this.pinoInstance.error(err, msg, ...args);
   }
 }

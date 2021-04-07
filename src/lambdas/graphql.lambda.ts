@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { GraphqlHelper } from "../services";
-import schema from "../schema";
 
 useContainer(Container);
 
@@ -20,6 +19,7 @@ export const handler = async (event: any, context: any, callback: any) => {
 
   if (!cachedGraphqlHandler) {
     const graphqlHelper = Container.get(GraphqlHelper);
+    const schema = await graphqlHelper.buildSchema();
     const server = new ApolloServer({
       schema,
       playground: true,
@@ -34,5 +34,5 @@ export const handler = async (event: any, context: any, callback: any) => {
       },
     });
   }
-  await cachedGraphqlHandler(event, context, callback);
+  return cachedGraphqlHandler(event, context, callback);
 };

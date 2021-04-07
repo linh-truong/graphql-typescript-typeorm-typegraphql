@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { GraphqlHelper, Logger } from "./services";
-import schema from "./schema";
 
 useContainer(Container);
 
@@ -15,6 +14,7 @@ useContainer(Container);
   const graphqlHelper = Container.get(GraphqlHelper);
   const logger = Container.get(Logger);
 
+  const schema = await graphqlHelper.buildSchema();
   const server = new ApolloServer({
     schema,
     playground: true,

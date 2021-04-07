@@ -3,7 +3,7 @@ import { Service } from "typedi";
 
 @Service()
 @Resolver()
-export default class CommonResolver {
+export class CommonResolver {
   @Query(() => String)
   greeting() {
     return "Hello";
